@@ -1,0 +1,67 @@
+/* =========================
+   RTL / Arabic Support
+   ========================= */
+
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+html[dir="rtl"] body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+}
+
+/* Top navigation */
+html[dir="rtl"] .topbar-inner,
+html[dir="rtl"] .nav,
+html[dir="rtl"] .cta-row {
+  flex-direction: row-reverse;
+}
+
+/* Text alignment */
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] p,
+html[dir="rtl"] li,
+html[dir="rtl"] label {
+  text-align: right;
+}
+
+/* Lists */
+html[dir="rtl"] ul {
+  padding-right: 18px;
+  padding-left: 0;
+}
+
+/* Hero grid stays clean */
+html[dir="rtl"] .hero-grid {
+  direction: rtl;
+}
+
+/* Cards & content */
+html[dir="rtl"] .card,
+html[dir="rtl"] .step,
+html[dir="rtl"] .contact-card,
+html[dir="rtl"] .form {
+  text-align: right;
+}
+
+/* Steps numbers spacing */
+html[dir="rtl"] .step {
+  flex-direction: row-reverse;
+}
+
+/* Mini info grid */
+html[dir="rtl"] .mini {
+  grid-template-columns: 1fr 120px;
+}
+
+html[dir="rtl"] .mini-k {
+  text-align: right;
+}
+
+/* Footer */
+html[dir="rtl"] .footer-inner {
+  flex-direction: row-reverse;
+  text-align: right;
+}
