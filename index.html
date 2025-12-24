@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Procsup | Procurement & Sourcing</title>
+  <meta name="description" content="Procurement & sourcing services specialized in sourcing from China for institutions and businesses.">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <div class="brand">
+        <span class="logo">P</span>
+        <span class="brand-text">Procsup</span>
+      </div>
+      <nav class="nav">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+        <button class="btn btn-small" id="btnScrollContact">Get a Quote</button>
+      </nav>
+      <button class="menu" id="btnMenu" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <a href="#services">Services</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+    <button class="btn" id="btnScrollContact2">Get a Quote</button>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <p class="pill">Procurement • Sourcing • China Supply</p>
+        <h1>Procurement & Sourcing<br/>Specialized in China Supply</h1>
+        <p class="sub">
+          We help institutions and businesses source products from verified suppliers in China,
+          with clear documentation and a low-risk approach.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn" href="#contact">Request a Quote</a>
+          <a class="btn btn-ghost" href="#process">How it works</a>
+        </div>
+
+        <div class="trust">
+          <div class="trust-item">
+            <div class="trust-num" data-counter="80">0</div>
+            <div class="trust-label">Supplier Screening</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-num" data-counter="24">0</div>
+            <div class="trust-label">Avg. Response Hours</div>
+          </div>
+          <div class="trust-item">
+            <div class="trust-num" data-counter="100">0</div>
+            <div class="trust-label">Documentation Focus</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>What we do</h3>
+        <ul class="check">
+          <li>Supplier identification & verification</li>
+          <li>Quotations based on real supplier pricing</li>
+          <li>Specs compliance & product documentation</li>
+          <li>Order coordination after client approval</li>
+        </ul>
+
+        <div class="note">
+          <strong>Low-risk model:</strong> We coordinate procurement steps after confirmation—no unnecessary pre-purchasing.
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head">
+        <h2>Services</h2>
+        <p>Simple, professional, and focused on sourcing from China.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>China Sourcing</h3>
+          <p>Find qualified suppliers and match products to your specifications.</p>
+        </article>
+        <article class="card">
+          <h3>Quotation & Costing</h3>
+          <p>Prepare clear quotations with transparent assumptions and options.</p>
+        </article>
+        <article class="card">
+          <h3>Compliance Support</h3>
+          <p>Help align specs, documentation, and product details for institutional requests.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section alt" id="process">
+    <div class="container">
+      <div class="section-head">
+        <h2>How it works</h2>
+        <p>A clear process designed for trust and documentation.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <h3>Send requirements</h3>
+            <p>Share specs, quantity, and delivery timeline.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <h3>We source & quote</h3>
+            <p>We request supplier quotations and deliver a clean quote to you.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <h3>Confirm & coordinate</h3>
+            <p>After approval, we coordinate the order with documented communication.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <details class="faq">
+        <summary>Do you provide logistics/shipping?</summary>
+        <p>
+          We focus on procurement and sourcing. If needed, we can coordinate with trusted shipping partners,
+          but logistics is not our core service.
+        </p>
+      </details>
+      <details class="faq">
+        <summary>Can you work without a physical office?</summary>
+        <p>
+          Yes. We operate with a digital-first model to keep costs low and processes documented.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Request a Quote</h2>
+        <p>Send your requirements and we’ll respond with a quotation.</p>
+      </div>
+
+      <div class="contact-grid">
+        <form class="form" id="quoteForm">
+          <div class="row">
+            <label>
+              Full Name
+              <input name="name" type="text" placeholder="Your name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" placeholder="you@email.com" required />
+            </label>
+          </div>
+
+          <label>
+            Requirements (specs + quantity)
+            <textarea name="requirements" placeholder="Example: Item, model, specs, quantity..." required></textarea>
+          </label>
+
+          <label class="inline">
+            <input type="checkbox" name="agree" required />
+            I confirm the information is correct.
+          </label>
+
+          <button class="btn" type="submit">Generate Email</button>
+          <p class="hint">This will open your email app with a pre-filled message (no server needed).</p>
+        </form>
+
+        <div class="contact-card">
+          <h3>Contact</h3>
+          <p class="muted">
+            Email: <a href="mailto:info@procsup.com">info@procsup.com</a><br/>
+            Website: <span id="siteUrl"></span>
+          </p>
+
+          <div class="mini">
+            <div class="mini-k">Business Model</div>
+            <div class="mini-v">Digital-first procurement & sourcing</div>
+            <div class="mini-k">Focus</div>
+            <div class="mini-v">Sourcing from China (B2B / institutions)</div>
+          </div>
+
+          <div class="toast" id="toast" aria-live="polite" aria-atomic="true" hidden></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Procsup. All rights reserved.</span>
+      <span class="muted">Procurement & Sourcing • Specialized in China Supply</span>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
