@@ -1,0 +1,191 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #333;
+    padding: 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.navbar a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.navbar select {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 14px;
+}
+
+/* Hero Section */
+#home {
+    background: linear-gradient(rgba(0, 123, 255, 0.7), rgba(0, 123, 255, 0.7)), url('hero-image.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+#home h1 {
+    font-size: 3rem;
+}
+
+#home p {
+    font-size: 1.5rem;
+}
+
+#home .btn {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#home .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Section Styles */
+section {
+    padding: 40px 20px;
+}
+
+h2, h3 {
+    margin-bottom: 20px;
+}
+
+/* About Section */
+#about p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+#about ul {
+    list-style-type: none;
+}
+
+#about li {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* Services Section */
+.service-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.service {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.service h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.service p {
+    font-size: 1rem;
+}
+
+/* Clients Section */
+#clients ul {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+#clients li {
+    background-color: #ddd;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    width: 20%;
+    text-align: center;
+}
+
+/* Contact Section */
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Media Queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .service-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .service {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    #clients ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #clients li {
+        width: 80%;
+    }
+}
