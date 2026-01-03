@@ -24,9 +24,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
  document.getElementById("year").textContent = new Date().getFullYear();
  
  // ===== i18n (EN / AR / ZH) =====
--const languageSwitcher = document.getElementById("languageSwitcher");
--
--const i18n = {
 +const languageSwitcher = document.getElementById("languageSwitcher");
 +
 +const i18n = {
@@ -43,23 +40,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "hero.badge": "Procurement • Sourcing • Logistics",
      "hero.h1": "Your Trusted Procurement Partner",
      "hero.p": "End-to-end procurement solutions for institutions and businesses—supplier sourcing, negotiation, compliance, and delivery.",
--    "hero.cta1": "Explore Services",
--    "hero.cta2": "Request a Quote",
--    "hero.stat1": "Verified suppliers",
--    "hero.stat2": "Support & tracking",
--    "hero.stat3": "Compliance focus",
--    "hero.cardTitle": "Quick Overview",
--    "hero.card1": "Supplier identification & vetting",
--    "hero.card2": "Procurement & contract management",
--    "hero.card3": "Shipping, customs, and final delivery",
--    "hero.card4": "Quality checks & documentation",
--    "hero.cardNote": "Tip: Replace the brand name, colors, and service bullets — everything else is ready.",
--
--    "about.h2": "About Us",
--    "about.p1": "We help organizations purchase efficiently from global markets with clear processes and reliable supplier networks.",
--    "about.p2": "From sourcing to delivery, we provide a single point of contact—reducing risk, improving transparency, and saving time.",
--    "about.pill1": "Transparent",
--    "about.pill2": "Reliable",
 +    "hero.cta1": "Explore Services",
 +    "hero.cta2": "Request a Quote",
 +    "hero.pill1": "Regional expertise",
@@ -117,17 +97,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "services.s2b1": "Negotiation support",
      "services.s2b2": "Contract & PO management",
      "services.s2b3": "Quality documentation",
--    "services.s3t": "Logistics",
--    "services.s3p": "Shipping, customs clearance, insurance, and door-to-door delivery.",
--    "services.s3b1": "Freight options",
--    "services.s3b2": "Customs & compliance",
--    "services.s3b3": "Tracking & delivery",
--
--    "why.h2": "Why Choose Us",
--    "why.p": "Practical, predictable, and professional execution.",
--    "why.w1t": "Single Point of Contact",
--    "why.w1p": "One team handling procurement + logistics from start to finish.",
--    "why.w2t": "Compliance & Documentation",
 +    "services.s3t": "Logistics",
 +    "services.s3p": "Shipping, customs clearance, insurance, and door-to-door delivery.",
 +    "services.s3b1": "Freight options",
@@ -160,15 +129,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "clients.p": "A simple area to show sectors or key partners.",
      "clients.c1": "Government",
      "clients.c2": "Healthcare",
--    "clients.c3": "Education",
--    "clients.c4": "Construction",
--    "clients.c5": "Retail",
--
--    "contact.h2": "Contact",
--    "contact.p": "Tell us what you need, and we’ll respond with the next steps and timeline.",
--    "contact.emailLabel": "Email",
--    "contact.phoneLabel": "Phone",
--    "contact.locLabel": "Location",
 +    "clients.c3": "Education",
 +    "clients.c4": "Construction",
 +    "clients.c5": "Retail",
@@ -209,22 +169,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "hero.badge": "مشتريات • توريد • لوجستيات",
      "hero.h1": "شريكك الموثوق في المشتريات",
      "hero.p": "حلول مشتريات متكاملة للجهات والمؤسسات—توريد الموردين، التفاوض، الامتثال، والتسليم.",
--    "hero.cta1": "استعرض الخدمات",
--    "hero.cta2": "اطلب عرض سعر",
--    "hero.stat1": "موردون موثوقون",
--    "hero.stat2": "دعم وتتبع",
--    "hero.stat3": "تركيز على الامتثال",
--    "hero.cardTitle": "نظرة سريعة",
--    "hero.card1": "تحديد الموردين والتحقق منهم",
--    "hero.card2": "إدارة المشتريات والعقود",
--    "hero.card3": "الشحن والتخليص والتسليم",
--    "hero.card4": "فحص الجودة والوثائق",
--    "hero.cardNote": "معلومة: غيّر الاسم والألوان ونص الخدمات — والباقي جاهز.",
--
--    "about.h2": "من نحن",
--    "about.p1": "نساعد الجهات في الشراء بكفاءة من الأسواق العالمية عبر إجراءات واضحة وشبكة موردين موثوقة.",
--    "about.p2": "من التوريد إلى التسليم، نوفر نقطة تواصل واحدة لتقليل المخاطر ورفع الشفافية وتوفير الوقت.",
--    "about.pill1": "شفافية",
 +    "hero.cta1": "استعرض الخدمات",
 +    "hero.cta2": "اطلب عرض سعر",
 +    "hero.pill1": "خبرة محلية",
@@ -282,17 +226,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "services.s2b1": "دعم التفاوض",
      "services.s2b2": "إدارة العقود وأوامر الشراء",
      "services.s2b3": "وثائق الجودة",
--    "services.s3t": "اللوجستيات (Logistics)",
--    "services.s3p": "الشحن والتخليص الجمركي والتأمين والتوصيل حتى بابك.",
--    "services.s3b1": "خيارات شحن متعددة",
--    "services.s3b2": "جمارك وامتثال",
--    "services.s3b3": "تتبع وتسليم",
--
--    "why.h2": "لماذا نحن",
--    "why.p": "تنفيذ عملي وواضح واحترافي.",
--    "why.w1t": "نقطة تواصل واحدة",
--    "why.w1p": "فريق واحد يدير المشتريات واللوجستيات من البداية للنهاية.",
--    "why.w2t": "امتثال ووثائق",
 +    "services.s3t": "اللوجستيات (Logistics)",
 +    "services.s3p": "الشحن والتخليص الجمركي والتأمين والتوصيل حتى بابك.",
 +    "services.s3b1": "خيارات شحن متعددة",
@@ -325,15 +258,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "clients.p": "مكان بسيط لعرض القطاعات أو الشركاء.",
      "clients.c1": "جهات حكومية",
      "clients.c2": "الرعاية الصحية",
--    "clients.c3": "التعليم",
--    "clients.c4": "الإنشاءات",
--    "clients.c5": "التجزئة",
--
--    "contact.h2": "تواصل معنا",
--    "contact.p": "اكتب احتياجك وبنرد عليك بالخطوات والمدة المتوقعة.",
--    "contact.emailLabel": "البريد",
--    "contact.phoneLabel": "الجوال",
--    "contact.locLabel": "الموقع",
 +    "clients.c3": "التعليم",
 +    "clients.c4": "الإنشاءات",
 +    "clients.c5": "التجزئة",
@@ -374,22 +298,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "hero.badge": "采购 • 供应 • 物流",
      "hero.h1": "值得信赖的采购合作伙伴",
      "hero.p": "为机构与企业提供端到端采购解决方案：供应商寻源、谈判、合规与交付。",
--    "hero.cta1": "查看服务",
--    "hero.cta2": "获取报价",
--    "hero.stat1": "优质供应商",
--    "hero.stat2": "支持与追踪",
--    "hero.stat3": "合规优先",
--    "hero.cardTitle": "快速概览",
--    "hero.card1": "供应商筛选与审核",
--    "hero.card2": "采购与合同管理",
--    "hero.card3": "运输、清关与交付",
--    "hero.card4": "质量检查与文件",
--    "hero.cardNote": "提示：只需替换品牌名、颜色和服务文案即可上线。",
--
--    "about.h2": "关于我们",
--    "about.p1": "我们通过清晰流程与可靠供应商网络，帮助组织高效对接全球市场。",
--    "about.p2": "从寻源到交付，我们提供单一对接窗口，降低风险并提升透明度。",
--    "about.pill1": "透明",
 +    "hero.cta1": "查看服务",
 +    "hero.cta2": "获取报价",
 +    "hero.pill1": "本地化优势",
@@ -447,17 +355,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "services.s2b1": "谈判支持",
      "services.s2b2": "合同与订单管理",
      "services.s2b3": "质量文件",
--    "services.s3t": "物流",
--    "services.s3p": "运输、清关、保险与门到门交付。",
--    "services.s3b1": "多种运输方案",
--    "services.s3b2": "清关与合规",
--    "services.s3b3": "追踪与交付",
--
--    "why.h2": "为什么选择我们",
--    "why.p": "可执行、可预期、专业交付。",
--    "why.w1t": "单一对接窗口",
--    "why.w1p": "一个团队贯穿采购与物流全流程。",
--    "why.w2t": "合规与文件",
 +    "services.s3t": "物流",
 +    "services.s3p": "运输、清关、保险与门到门交付。",
 +    "services.s3b1": "多种运输方案",
@@ -490,14 +387,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
      "clients.p": "用于展示行业或关键合作伙伴。",
      "clients.c1": "政府",
      "clients.c2": "医疗",
--    "clients.c3": "教育",
--    "clients.c4": "建筑",
--    "clients.c5": "零售",
--
--    "contact.h2": "联系我们",
--    "contact.p": "告诉我们你的需求，我们会回复下一步与时间计划。",
--    "contact.emailLabel": "邮箱",
--    "contact.phoneLabel": "电话",
 +    "clients.c3": "教育",
 +    "clients.c4": "建筑",
 +    "clients.c5": "零售",
@@ -523,11 +412,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
  
      "footer.rights": "版权所有。",
      "footer.top": "返回顶部 ↑"
--  }
--};
--
--function setLanguage(lang) {
--  // direction + lang
 +  }
 +};
 +
@@ -544,16 +428,6 @@ index 2e2313db851746614a3572f714605681a9eadb09..52c3332d3caab345f0eeac256a010870
    });
  
    // Persist
--  localStorage.setItem("site_lang", lang);
--}
--
--const saved = localStorage.getItem("site_lang") || "en";
--languageSwitcher.value = saved;
--setLanguage(saved);
--
--languageSwitcher.addEventListener("change", (e) => {
--  setLanguage(e.target.value);
--});
 +  localStorage.setItem("site_lang", lang);
 +}
 +
