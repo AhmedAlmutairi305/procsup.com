@@ -117,8 +117,8 @@ body{margin:0;font-family:var(--font-sans);background:var(--bg);color:var(--text
   .marquee-track .logo img{height:70px}
 }
 
+/* Hide sections/elements using data-hidden */
 [data-hidden="true"] {
   display: none !important;
 }
-
 
