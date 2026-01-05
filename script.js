@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const brand = document.querySelector('.brand');
 
   // Supported languages and translations
-  const langs = ['ar', 'en', 'zh'];
+  const langs = ['ar', 'en', '中文'];
   let current = 0; // index in langs (default AR)
 
   const translations = {
@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
 
 
