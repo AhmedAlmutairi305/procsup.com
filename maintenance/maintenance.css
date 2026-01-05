@@ -119,3 +119,8 @@ p{
 /* Direction awareness */
 html[dir="rtl"] .card{direction:rtl}
 html[dir="ltr"] .card{direction:ltr}
+
+/* Global hide toggle */
+[data-hidden="true"] {
+  display: none !important;
+}
