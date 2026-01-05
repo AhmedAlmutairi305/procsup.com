@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let current = 0; // index in langs (default AR)
 
   const translations = {
-    brand: { ar: 'ProcureCo', en: 'ProcureCo', zh: 'ProcureCo' },
+    brand: { ar: 'Procsup', en: 'Procsup', zh: 'Procsup' },
     navHome: { ar: 'الرئيسية', en: 'Home', zh: '首页' },
     navAbout: { ar: 'من نحن', en: 'About', zh: '关于我们' },
     navServices: { ar: 'الخدمات', en: 'Services', zh: '服务' },
@@ -155,3 +155,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
