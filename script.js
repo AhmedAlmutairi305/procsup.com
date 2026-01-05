@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     footerTag: { ar: 'شريكك في المشتريات والتموين', en: 'Your procurement & sourcing partner', zh: '您的采购与供应合作伙伴' },
     footerContact: { ar: 'info@procsup.com • +966 55 851 0594', en: 'info@procsup.com • +966 55 851 0594', zh: 'info@procsup.com • +966 55 851 0594' },
-    copyright: { ar: '© 2026 ProcureCo — جميع الحقوق محفوظة', en: '© 2026 ProcureCo — All rights reserved', zh: '© 2026 ProcureCo — 保留所有权利' }
+    copyright: { ar: '© 2026 Procsup — جميع الحقوق محفوظة', en: '© 2026 Procsup — All rights reserved', zh: '© 2026 Procsup — 保留所有权利' }
   };
 
   // Apply translations to all elements having data-i18n
@@ -155,5 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
 
