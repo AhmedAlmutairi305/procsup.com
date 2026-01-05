@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <link rel="icon" href="D:\تجربة\images.jpg" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>شركة المشتريات والتموين — الرئيسية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="brand-wrap">
+          <a class="brand" href="#" data-i18n="brand">ProcureCo</a>
+          <button id="langToggle" class="lang-toggle" aria-label="Toggle language">EN</button>
+        </div>
+
+        <button id="navToggle" class="nav-toggle" aria-label="قائمة">☰</button>
+
+        <nav class="site-nav" id="siteNav" aria-label="القائمة الرئيسية">
+          <a href="#home" data-i18n="navHome">الرئيسية</a>
+          <a href="#about" data-i18n="navAbout">من نحن</a>
+          <a href="#services" data-i18n="navServices">الخدمات</a>
+          <a href="#clients" data-i18n="navClients">العملاء</a>
+          <a href="#compliance" data-i18n="navCompliance">الامتثال</a>
+          <a href="#contact" class="cta" data-i18n="navContact">اتصل بنا</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="hero">
+        <!-- Optional video element: place a file at assets/hero/hero-video.mp4 to use video; otherwise background-image will be used -->
+        <video class="hero-video" autoplay muted loop playsinline aria-hidden="true">
+          <source src="assets/hero/hero-video.mp4" type="video/mp4">
+        </video>
+        <div class="container hero-inner">
+          <div class="hero-text">
+            <h1 data-i18n="heroTitle">حلول مهنية للمشتريات والتموين</h1>
+            <p data-i18n="heroDesc">نقدّم خدمات متكاملة في المشتريات، التوريد، اللوجستيات والامتثال لمؤسسات تحتاج إلى شريك موثوق.</p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn primary" data-i18n="ctaPrimary">اطلب استشارة</a>
+              <a href="#services" class="btn outline" data-i18n="ctaSecondary">خدماتنا</a>
+            </div>
+          </div>
+          <!-- removed placeholder box; background image/video + overlay handled by CSS -->
+        </div>
+      </section>
+
+      <section id="about" class="section about">
+        <div class="container">
+          <h2 data-i18n="aboutTitle">من نحن</h2>
+          <p data-i18n="aboutText">شركة متخصصة في تقديم حلول المشتريات والتموين للمؤسسات الحكومية والخاصة، نعمل على تقليل التكلفة وتحسين سلسلة الإمداد مع ضمان أعلى معايير الشفافية والامتثال.</p>
+        </div>
+      </section>
+
+      <section id="services" class="section services">
+        <div class="container">
+          <h2 data-i18n="servicesTitle">خدماتنا</h2>
+          <div class="grid service-cards">
+            <article class="service-card">
+              <h3 data-i18n="svc1Title">المشتريات الاستراتيجية</h3>
+              <p data-i18n="svc1Text">تحليل وفحص احتياجات المؤسسة وإدارة المنافسات للحصول على أفضل الأسعار والجودة.</p>
+            </article>
+            <article class="service-card">
+              <h3 data-i18n="svc2Title">التوريد العالمي</h3>
+              <p data-i18n="svc2Text">شبكات موردين موثوقة وإدارة عقود التوريد محلياً ودولياً.</p>
+            </article>
+            <article class="service-card">
+              <h3 data-i18n="svc3Title">الخدمات اللوجستية</h3>
+              <p data-i18n="svc3Text">حلول تخزين وشحن مخصصة مع تتبّع وتحسين سلسلة الإمداد.</p>
+            </article>
+            <article class="service-card">
+              <h3 data-i18n="svc4Title">الامتثال والشهادات</h3>
+              <p data-i18n="svc4Text">دعم امتثال تنظيمي، تدقيق الموردين وحفظ معايير الجودة.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="clients" class="section clients">
+        <div class="container">
+          <h2 data-i18n="clientsTitle">عملاؤنا وشركاؤنا</h2>
+
+          <div class="client-logos">
+            <!-- marquee moving left -->
+            <div class="marquee marquee--left" aria-hidden="false">
+              <div class="marquee-track">
+                <div class="logo">شعار 1</div>
+                <div class="logo">شعار 2</div>
+                <div class="logo">شعار 3</div>
+                <div class="logo">شعار 4</div>
+                <!-- duplicate for seamless loop -->
+                <div class="logo">شعار 1</div>
+                <div class="logo">شعار 2</div>
+                <div class="logo">شعار 3</div>
+                <div class="logo">شعار 4</div>
+              </div>
+            </div>
+
+            <!-- marquee moving right -->
+            <div class="marquee marquee--right" aria-hidden="false">
+              <div class="marquee-track">
+                <div class="logo">شعار 4</div>
+                <div class="logo">شعار 3</div>
+                <div class="logo">شعار 2</div>
+                <div class="logo">شعار 1</div>
+                <!-- duplicate for seamless loop -->
+                <div class="logo">شعار 4</div>
+                <div class="logo">شعار 3</div>
+                <div class="logo">شعار 2</div>
+                <div class="logo">شعار 1</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <section id="compliance" class="section compliance">
+        <div class="container">
+          <h2 data-i18n="complianceTitle">الامتثال والشهادات</h2>
+          <div class="compliance-list">
+            <div class="badge">ISO 9001</div>
+            <div class="badge">ISO 27001</div>
+            <div class="badge">شهادة الممارسات الأخلاقية</div>
+          </div>
+          <p class="muted" data-i18n="complianceText">نلتزم بأعلى معايير الشفافية والجودة في جميع عملياتنا.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="section contact">
+        <div class="container">
+          <h2 data-i18n="contactTitle">تواصل معنا</h2>
+          <form id="contactForm" class="contact-form">
+            <div class="form-grid">
+              <label><span data-i18n="labelName">الاسم</span>
+                <input type="text" name="name" required>
+              </label>
+              <label><span data-i18n="labelEmail">البريد الإلكتروني</span>
+                <input type="email" name="email" required>
+              </label>
+            </div>
+            <label><span data-i18n="labelMessage">الرسالة</span>
+              <textarea name="message" rows="6" required></textarea>
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="btn primary" data-i18n="contactSubmit">إرسال الرسالة</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div>
+          <strong data-i18n="brand">ProcureCo</strong>
+          <p class="muted" data-i18n="footerTag">شريكك في المشتريات والتموين</p>
+        </div>
+        <div class="footer-right">
+          <div class="footer-links muted" data-i18n="footerContact">info@procureco.example • +966 5X XXX XXXX</div>
+          <div class="social-links">
+            <a class="social-link" href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"> 
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 5.8a8.3 8.3 0 0 1-2.4.7 4.2 4.2 0 0 0 1.8-2.3 8.4 8.4 0 0 1-2.7 1 4.2 4.2 0 0 0-7.2 3.8A12 12 0 0 1 3 4.9a4.2 4.2 0 0 0 1.3 5.6 4.1 4.1 0 0 1-1.9-.5v.1a4.2 4.2 0 0 0 3.4 4.1 4.2 4.2 0 0 1-1.9.1 4.3 4.3 0 0 0 3.9 2.9A8.5 8.5 0 0 1 2 19.5a11.9 11.9 0 0 0 6.5 1.9c7.8 0 12.1-6.5 12.1-12.1v-.6A8.7 8.7 0 0 0 22 5.8z" fill="currentColor"/></svg>
+            </a>
+            <a class="social-link" href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM9 9h3.8v1.6h.1c.5-.9 1.8-1.8 3.6-1.8 3.8 0 4.5 2.5 4.5 5.7V21H18v-5.1c0-1.2 0-2.7-1.6-2.7-1.6 0-1.8 1.2-1.8 2.6V21H9z" fill="currentColor"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="container copyright" data-i18n="copyright">© 2026 ProcureCo — جميع الحقوق محفوظة</div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+      // Inline language toggle (AR/EN/ZH) — updates html.lang and html.dir and persists choice
+      (function(){
+        try{
+          const LANGS = [
+            {code:'ar', dir:'rtl', label:'ع'},
+            {code:'en', dir:'ltr', label:'EN'},
+            {code:'zh', dir:'ltr', label:'中'}
+          ];
+          const btn = document.getElementById('langToggle');
+          if(!btn) return;
+
+          const applyLang = (langObj)=>{
+            document.documentElement.lang = langObj.code;
+            document.documentElement.setAttribute('dir', langObj.dir);
+            btn.textContent = langObj.label;
+            btn.setAttribute('aria-label', 'Switch language');
+            try{ localStorage.setItem('siteLang', langObj.code); }catch(e){}
+          };
+
+          const saved = (function(){ try{ return localStorage.getItem('siteLang') }catch(e){ return null } })();
+          let idx = 0;
+          if(saved){
+            idx = LANGS.findIndex(l=>l.code===saved);
+            if(idx < 0) idx = 0;
+          } else {
+            idx = LANGS.findIndex(l=>l.code===document.documentElement.lang);
+            if(idx < 0) idx = document.documentElement.getAttribute('dir') === 'rtl' ? 0 : 1;
+          }
+          applyLang(LANGS[idx]);
+
+          btn.addEventListener('click', ()=>{
+            idx = (idx + 1) % LANGS.length;
+            applyLang(LANGS[idx]);
+          });
+        }catch(e){ /* fail silently */ }
+      })();
+    </script>
+  </body>
+</html>
