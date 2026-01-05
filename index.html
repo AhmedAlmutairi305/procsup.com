@@ -178,13 +178,13 @@
     <script src="script.js"></script>
 
     <script>
-      // Inline language toggle (AR/EN/中文) — updates html.lang and html.dir and persists choice
+      // Inline language toggle (AR/EN/ZH) — updates html.lang and html.dir and persists choice
       (function(){
         try{
           const LANGS = [
             {code:'ar', dir:'rtl', label:'ع'},
             {code:'en', dir:'ltr', label:'EN'},
-            {code:'中文', dir:'ltr', label:'中'}
+            {code:'zh', dir:'ltr', label:'中'}
           ];
           const btn = document.getElementById('langToggle');
           if(!btn) return;
@@ -217,6 +217,7 @@
     </script>
   </body>
 </html>
+
 
 
 
