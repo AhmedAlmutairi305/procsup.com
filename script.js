@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     contactSubmit: { ar: 'إرسال الرسالة', en: 'Send Message', zh: '发送消息' },
 
     footerTag: { ar: 'شريكك في المشتريات والتموين', en: 'Your procurement & sourcing partner', zh: '您的采购与供应合作伙伴' },
-    footerContact: { ar: 'info@procureco.example • +966 5X XXX XXXX', en: 'info@procureco.example • +966 5X XXX XXXX', zh: 'info@procureco.example • +966 5X XXX XXXX' },
+    footerContact: { ar: 'info@procsup.com • +966 55 851 0594', en: 'info@procsup.com • +966 55 851 0594', zh: 'info@procsup.com • +966 55 851 0594' },
     copyright: { ar: '© 2026 ProcureCo — جميع الحقوق محفوظة', en: '© 2026 ProcureCo — All rights reserved', zh: '© 2026 ProcureCo — 保留所有权利' }
   };
 
@@ -155,4 +155,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
