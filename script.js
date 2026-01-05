@@ -36,46 +36,46 @@ document.addEventListener('DOMContentLoaded', () => {
   let current = 0; // index in langs (default AR)
 
   const translations = {
-    brand: { ar: 'Procsup', en: 'Procsup', zh: 'Procsup' },
-    navHome: { ar: 'الرئيسية', en: 'Home', zh: '首页' },
-    navAbout: { ar: 'من نحن', en: 'About', zh: '关于我们' },
-    navServices: { ar: 'الخدمات', en: 'Services', zh: '服务' },
-    navClients: { ar: 'العملاء', en: 'Clients', zh: '客户' },
-    navCompliance: { ar: 'الامتثال', en: 'Compliance', zh: '合规' },
-    navContact: { ar: 'اتصل بنا', en: 'Contact', zh: '联系我们' },
+    brand: { ar: 'Procsup', en: 'Procsup', 中文: 'Procsup' },
+    navHome: { ar: 'الرئيسية', en: 'Home', 中文: '首页' },
+    navAbout: { ar: 'من نحن', en: 'About', 中文: '关于我们' },
+    navServices: { ar: 'الخدمات', en: 'Services', 中文: '服务' },
+    navClients: { ar: 'العملاء', en: 'Clients', 中文: '客户' },
+    navCompliance: { ar: 'الامتثال', en: 'Compliance', 中文: '合规' },
+    navContact: { ar: 'اتصل بنا', en: 'Contact', 中文: '联系我们' },
 
-    heroTitle: { ar: 'حلول مهنية للمشتريات والتموين', en: 'Professional Procurement & Sourcing Solutions', zh: '专业采购与供应解决方案' },
-    heroDesc: { ar: 'نقدّم خدمات متكاملة في المشتريات، التوريد، اللوجستيات والامتثال لمؤسسات تحتاج إلى شريك موثوق.', en: 'We provide end-to-end procurement, sourcing, logistics and compliance services for organizations seeking a reliable partner.', zh: '我们为寻求可靠合作伙伴的组织提供端到端采购、供应、物流和合规服务。' },
-    ctaPrimary: { ar: 'اطلب استشارة', en: 'Request Consultation', zh: '请求咨询' },
-    ctaSecondary: { ar: 'خدماتنا', en: 'Our Services', zh: '我们的服务' },
+    heroTitle: { ar: 'حلول مهنية للمشتريات والتموين', en: 'Professional Procurement & Sourcing Solutions', 中文: '专业采购与供应解决方案' },
+    heroDesc: { ar: 'نقدّم خدمات متكاملة في المشتريات، التوريد، اللوجستيات والامتثال لمؤسسات تحتاج إلى شريك موثوق.', en: 'We provide end-to-end procurement, sourcing, logistics and compliance services for organizations seeking a reliable partner.', 中文: '我们为寻求可靠合作伙伴的组织提供端到端采购、供应、物流和合规服务。' },
+    ctaPrimary: { ar: 'اطلب استشارة', en: 'Request Consultation', 中文: '请求咨询' },
+    ctaSecondary: { ar: 'خدماتنا', en: 'Our Services', 中文: '我们的服务' },
 
-    aboutTitle: { ar: 'من نحن', en: 'About Us', zh: '关于我们' },
-    aboutText: { ar: 'شركة متخصصة في تقديم حلول المشتريات والتموين للمؤسسات الحكومية والخاصة، نعمل على تقليل التكلفة وتحسين سلسلة الإمداد مع ضمان أعلى معايير الشفافية والامتثال.', en: 'A firm specialized in procurement and sourcing solutions for public and private organizations, focused on cost reduction and supply chain optimization while ensuring transparency and compliance.', zh: '一家专注于为公共和私营组织提供采购与供应解决方案的公司，致力于降低成本并优化供应链，同时确保透明与合规。' },
+    aboutTitle: { ar: 'من نحن', en: 'About Us', 中文: '关于我们' },
+    aboutText: { ar: 'شركة متخصصة في تقديم حلول المشتريات والتموين للمؤسسات الحكومية والخاصة، نعمل على تقليل التكلفة وتحسين سلسلة الإمداد مع ضمان أعلى معايير الشفافية والامتثال.', en: 'A firm specialized in procurement and sourcing solutions for public and private organizations, focused on cost reduction and supply chain optimization while ensuring transparency and compliance.', 中文: '一家专注于为公共和私营组织提供采购与供应解决方案的公司，致力于降低成本并优化供应链，同时确保透明与合规。' },
 
-    servicesTitle: { ar: 'خدماتنا', en: 'Our Services', zh: '我们的服务' },
-    svc1Title: { ar: 'المشتريات الاستراتيجية', en: 'Strategic Procurement', zh: '战略采购' },
-    svc1Text: { ar: 'تحليل وفحص احتياجات المؤسسة وإدارة المنافسات للحصول على أفضل الأسعار والجودة.', en: 'Analyze requirements and manage tenders to secure best value and quality.', zh: '分析需求并管理招标，以获取最佳价值和质量。' },
-    svc2Title: { ar: 'التوريد العالمي', en: 'Global Sourcing', zh: '全球采购' },
-    svc2Text: { ar: 'شبكات موردين موثوقة وإدارة عقود التوريد محلياً ودولياً.', en: 'Trusted supplier networks and contract management locally and internationally.', zh: '可信赖的供应商网络与本地及国际合同管理。' },
-    svc3Title: { ar: 'الخدمات اللوجستية', en: 'Logistics Services', zh: '物流服务' },
-    svc3Text: { ar: 'حلول تخزين وشحن مخصصة مع تتبّع وتحسين سلسلة الإمداد.', en: 'Tailored warehousing and shipping with tracking and supply-chain optimization.', zh: '定制的仓储与运输解决方案，含追踪与供应链优化。' },
-    svc4Title: { ar: 'الامتثال والشهادات', en: 'Compliance & Certifications', zh: '合规与认证' },
-    svc4Text: { ar: 'دعم امتثال تنظيمي، تدقيق الموردين وحفظ معايير الجودة.', en: 'Regulatory compliance support, supplier audits and quality assurance.', zh: '提供法规合规支持、供应商审计与质量保证。' },
+    servicesTitle: { ar: 'خدماتنا', en: 'Our Services', 中文: '我们的服务' },
+    svc1Title: { ar: 'المشتريات الاستراتيجية', en: 'Strategic Procurement', 中文: '战略采购' },
+    svc1Text: { ar: 'تحليل وفحص احتياجات المؤسسة وإدارة المنافسات للحصول على أفضل الأسعار والجودة.', en: 'Analyze requirements and manage tenders to secure best value and quality.', 中文: '分析需求并管理招标，以获取最佳价值和质量。' },
+    svc2Title: { ar: 'التوريد العالمي', en: 'Global Sourcing', 中文: '全球采购' },
+    svc2Text: { ar: 'شبكات موردين موثوقة وإدارة عقود التوريد محلياً ودولياً.', en: 'Trusted supplier networks and contract management locally and internationally.', 中文: '可信赖的供应商网络与本地及国际合同管理。' },
+    svc3Title: { ar: 'الخدمات اللوجستية', en: 'Logistics Services', 中文: '物流服务' },
+    svc3Text: { ar: 'حلول تخزين وشحن مخصصة مع تتبّع وتحسين سلسلة الإمداد.', en: 'Tailored warehousing and shipping with tracking and supply-chain optimization.', 中文: '定制的仓储与运输解决方案，含追踪与供应链优化。' },
+    svc4Title: { ar: 'الامتثال والشهادات', en: 'Compliance & Certifications', 中文: '合规与认证' },
+    svc4Text: { ar: 'دعم امتثال تنظيمي، تدقيق الموردين وحفظ معايير الجودة.', en: 'Regulatory compliance support, supplier audits and quality assurance.', 中文: '提供法规合规支持、供应商审计与质量保证。' },
 
-    clientsTitle: { ar: 'عملاؤنا وشركاؤنا', en: 'Our Clients & Partners', zh: '我们的客户与合作伙伴' },
+    clientsTitle: { ar: 'عملاؤنا وشركاؤنا', en: 'Our Clients & Partners', 中文: '我们的客户与合作伙伴' },
 
-    complianceTitle: { ar: 'الامتثال والشهادات', en: 'Compliance & Certifications', zh: '合规与认证' },
-    complianceText: { ar: 'نلتزم بأعلى معايير الشفافية والجودة في جميع عملياتنا.', en: 'We adhere to the highest standards of transparency and quality across operations.', zh: '我们在所有运营中遵循最高的透明度和质量标准。' },
+    complianceTitle: { ar: 'الامتثال والشهادات', en: 'Compliance & Certifications', 中文: '合规与认证' },
+    complianceText: { ar: 'نلتزم بأعلى معايير الشفافية والجودة في جميع عملياتنا.', en: 'We adhere to the highest standards of transparency and quality across operations.', 中文: '我们在所有运营中遵循最高的透明度和质量标准。' },
 
-    contactTitle: { ar: 'تواصل معنا', en: 'Contact Us', zh: '联系我们' },
-    labelName: { ar: 'الاسم', en: 'Name', zh: '姓名' },
-    labelEmail: { ar: 'البريد الإلكتروني', en: 'Email', zh: '电子邮件' },
-    labelMessage: { ar: 'الرسالة', en: 'Message', zh: '留言' },
-    contactSubmit: { ar: 'إرسال الرسالة', en: 'Send Message', zh: '发送消息' },
+    contactTitle: { ar: 'تواصل معنا', en: 'Contact Us', 中文: '联系我们' },
+    labelName: { ar: 'الاسم', en: 'Name', 中文: '姓名' },
+    labelEmail: { ar: 'البريد الإلكتروني', en: 'Email', 中文: '电子邮件' },
+    labelMessage: { ar: 'الرسالة', en: 'Message', 中文: '留言' },
+    contactSubmit: { ar: 'إرسال الرسالة', en: 'Send Message', 中文: '发送消息' },
 
-    footerTag: { ar: 'شريكك في المشتريات والتموين', en: 'Your procurement & sourcing partner', zh: '您的采购与供应合作伙伴' },
-    footerContact: { ar: 'info@procsup.com • +966 55 851 0594', en: 'info@procsup.com • +966 55 851 0594', zh: 'info@procsup.com • +966 55 851 0594' },
-    copyright: { ar: '© 2026 Procsup — جميع الحقوق محفوظة', en: '© 2026 Procsup — All rights reserved', zh: '© 2026 Procsup — 保留所有权利' }
+    footerTag: { ar: 'شريكك في المشتريات والتموين', en: 'Your procurement & sourcing partner', 中文: '您的采购与供应合作伙伴' },
+    footerContact: { ar: 'info@procsup.com • +966 55 851 0594', en: 'info@procsup.com • +966 55 851 0594', 中文: 'info@procsup.com • +966 55 851 0594' },
+    copyright: { ar: '© 2026 Procsup — جميع الحقوق محفوظة', en: '© 2026 Procsup — All rights reserved', 中文: '© 2026 Procsup — 保留所有权利' }
   };
 
   // Apply translations to all elements having data-i18n
@@ -145,16 +145,17 @@ document.addEventListener('DOMContentLoaded', () => {
       const message = (data.get('message') || '').toString().trim();
       const lang = langs[current];
       if (!name || !email || !message) {
-        const msg = { ar: 'المرجو تعبئة الحقول المطلوبة', en: 'Please fill in the required fields', zh: '请填写必填字段' };
+        const msg = { ar: 'المرجو تعبئة الحقول المطلوبة', en: 'Please fill in the required fields', 中文: '请填写必填字段' };
         alert(msg[lang]);
         return;
       }
-      const recieved = { ar: 'تم استلام رسالتك. شكراً لتواصلك معنا — هذا نموذج تجريبي.', en: 'Your message has been received. Thank you — demo only.', zh: '已收到您的消息。谢谢 — 仅演示用。' };
+      const recieved = { ar: 'تم استلام رسالتك. شكراً لتواصلك معنا — هذا نموذج تجريبي.', en: 'Your message has been received. Thank you — demo only.', 中文: '已收到您的消息。谢谢 — 仅演示用。' };
       alert(recieved[lang]);
       form.reset();
     });
   }
 });
+
 
 
 
