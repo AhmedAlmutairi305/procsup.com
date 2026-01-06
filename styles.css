@@ -130,8 +130,9 @@ body{margin:0;font-family:var(--font-sans);background:var(--bg);color:var(--text
 
 .logo{
   height: 1em;   /* نفس حجم النص */
-  max-height: 28px;
+  max-height: 40px;
   width: auto;
 }
+
 
 
