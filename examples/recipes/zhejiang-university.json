@@ -1,0 +1,19 @@
+{
+  "slug": "zhejiang-university",
+  "portal_urls": ["https://isinfosys.zju.edu.cn"],
+  "field_mappings": {
+    "first_name": {"selector": "input[placeholder='First Name']", "type": "text"},
+    "last_name": {"selector": "input[placeholder='Last Name']", "type": "text"},
+    "email": {"selector": "input[placeholder='Email']", "type": "text"},
+    "country": {"selector": "select[name='country']", "type": "dropdown"},
+    "intended_major": {"selector": "textarea[name='major']", "type": "text"}
+  },
+  "upload_mappings": {
+    "cv_file": {"selector": "input[name='cv']"},
+    "language_certificate_file": {"selector": "input[name='lang_cert']"},
+    "recommendation_1_file": {"selector": "input[name='rec_1']"}
+  },
+  "selector_overrides": {
+    "submit": "button[type='submit']"
+  }
+}

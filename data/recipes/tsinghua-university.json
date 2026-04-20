@@ -1,0 +1,19 @@
+{
+  "slug": "tsinghua-university",
+  "portal_urls": ["https://apply.tsinghua.edu.cn"],
+  "field_mappings": {
+    "full_name": {"selector": "#fullName", "type": "text"},
+    "gender": {"selector": "input[name='gender']", "type": "radio"},
+    "date_of_birth": {"selector": "#birthDate", "type": "date"},
+    "email": {"selector": "#email", "type": "text"},
+    "passport_number": {"selector": "#passportNo", "type": "text"}
+  },
+  "upload_mappings": {
+    "passport_file": {"selector": "#passportFile"},
+    "transcript_file": {"selector": "#transcriptFile"},
+    "personal_statement_file": {"selector": "#psFile"}
+  },
+  "selector_overrides": {
+    "next_step": "button:has-text('Next')"
+  }
+}

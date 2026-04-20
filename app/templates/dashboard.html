@@ -4,11 +4,12 @@
   <article>
     <h2>Universities</h2>
     <table>
-      <thead><tr><th>Name</th><th>Deadline</th><th>Status</th><th>Profile</th></tr></thead>
+      <thead><tr><th>Name</th><th>Slug</th><th>Deadline</th><th>Status</th><th>Profile</th></tr></thead>
       <tbody>
       {% for u in universities %}
         <tr>
           <td>{{ u.name }}</td>
+          <td>{{ u.slug or '-' }}</td>
           <td>{{ u.deadline or '-' }}</td>
           <td>{{ u.status.value }}</td>
           <td><a href="/universities/{{u.id}}">Open</a></td>
@@ -19,37 +20,51 @@
   </article>
 
   <article>
-    <h2>Automation Actions</h2>
-    <form method="post" action="/ui/automation/start" class="stack">
-      <label>University ID <input name="university_id" type="number" required /></label>
-      <label>Dry Run <select name="dry_run"><option value="true" selected>{{ dry_run_default }}</option><option value="false">false</option></select></label>
-      <button type="submit">Start Automation</button>
+    <h2>Applicants</h2>
+    <form method="post" action="/ui/applicants/import" class="stack">
+      <label>Excel/CSV absolute path <input name="file_path" required /></label>
+      <button type="submit">Import Applicant Profiles</button>
     </form>
-    <hr/>
-    <form method="post" action="/ui/automation/approve" class="stack">
-      <label>Application ID <input name="application_id" type="number" required /></label>
-      <label>Approve final submit
-        <select name="approve">
-          <option value="false" selected>false</option>
-          <option value="true">true</option>
-        </select>
-      </label>
-      <button type="submit">Apply Approval</button>
-    </form>
+    <table>
+      <thead><tr><th>ID</th><th>Applicant ID</th><th>Name</th><th>Email</th></tr></thead>
+      <tbody>
+      {% for p in applicants %}
+      <tr><td>{{p.id}}</td><td>{{p.applicant_id}}</td><td>{{p.full_name or '-'}}</td><td>{{p.email or '-'}}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
   </article>
 </section>
 
-<section>
-  <h2>Applications</h2>
-  <table>
-    <thead><tr><th>ID</th><th>University ID</th><th>Status</th><th>Submitted</th><th>Updated</th></tr></thead>
-    <tbody>
-    {% for a in applications %}
+<section class="grid two">
+  <article>
+    <h2>Start Automation Run</h2>
+    <form method="post" action="/ui/automation/start" class="stack">
+      <label>University ID <input name="university_id" type="number" required /></label>
+      <label>Applicant Profile ID <input name="applicant_profile_id" type="number" required /></label>
+      <label>Dry Run
+        <select name="dry_run"><option value="true" selected>true</option><option value="false">false</option></select>
+      </label>
+      <label>Headed browser
+        <select name="headed"><option value="true" selected>true</option><option value="false">false</option></select>
+      </label>
+      <button type="submit">Start Automation</button>
+    </form>
+  </article>
+
+  <article>
+    <h2>Runs</h2>
+    <table>
+      <thead><tr><th>ID</th><th>Uni</th><th>Applicant</th><th>Status</th><th>Step</th><th>Progress</th><th>Live</th></tr></thead>
+      <tbody>
+      {% for r in runs %}
       <tr>
-        <td>{{ a.id }}</td><td>{{ a.university_id }}</td><td>{{ a.status.value }}</td><td>{{ a.submitted }}</td><td>{{ a.updated_at }}</td>
+        <td>{{r.id}}</td><td>{{r.university_id}}</td><td>{{r.applicant_id}}</td><td>{{r.status.value}}</td><td>{{r.current_step or '-'}}</td><td>{{r.progress_percent}}%</td>
+        <td><a href="/runs/{{r.id}}">Monitor</a></td>
       </tr>
-    {% endfor %}
-    </tbody>
-  </table>
+      {% endfor %}
+      </tbody>
+    </table>
+  </article>
 </section>
 {% endblock %}

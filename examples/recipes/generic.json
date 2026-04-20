@@ -1,0 +1,23 @@
+{
+  "slug": "generic",
+  "portal_urls": [],
+  "field_mappings": {
+    "full_name": {"selector": "input[name='full_name']", "type": "text"},
+    "first_name": {"selector": "input[name='first_name']", "type": "text"},
+    "last_name": {"selector": "input[name='last_name']", "type": "text"},
+    "gender": {"selector": "select[name='gender']", "type": "dropdown"},
+    "date_of_birth": {"selector": "input[name='dob']", "type": "date", "transform": "date_dd_mm_yyyy"},
+    "email": {"selector": "input[type='email']", "type": "text"},
+    "phone": {"selector": "input[name='phone']", "type": "text"},
+    "nationality": {"selector": "select[name='nationality']", "type": "dropdown"},
+    "passport_number": {"selector": "input[name='passport_no']", "type": "text"},
+    "intended_major": {"selector": "input[name='major']", "type": "text"}
+  },
+  "upload_mappings": {
+    "passport_file": {"selector": "input[name='passport_upload']"},
+    "transcript_file": {"selector": "input[name='transcript_upload']"},
+    "cv_file": {"selector": "input[name='cv_upload']"},
+    "photo_file": {"selector": "input[name='photo_upload']"}
+  },
+  "selector_overrides": {}
+}

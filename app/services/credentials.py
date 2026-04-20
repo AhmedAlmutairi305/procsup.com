@@ -1,15 +1,11 @@
-"""Credential provider abstraction.
+"""Credential provider abstraction with keyring-first fallback."""
 
-Default implementation reads from environment variables or prompts operator externally.
-It intentionally avoids storing plaintext credentials in source code or database.
-"""
-
-import os
+from app.services.secrets import secret_provider
 
 
 class CredentialProvider:
     def get_username(self, university_slug: str) -> str | None:
-        return os.getenv(f"APP_USER_{university_slug.upper()}")
+        return secret_provider.get_secret("portal_user", university_slug)
 
     def get_password(self, university_slug: str) -> str | None:
-        return os.getenv(f"APP_PASS_{university_slug.upper()}")
+        return secret_provider.get_secret("portal_pass", university_slug)

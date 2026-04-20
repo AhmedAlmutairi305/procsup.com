@@ -19,6 +19,7 @@ def run() -> None:
                 [
                     University(
                         name="Tsinghua University",
+                        slug="tsinghua-university",
                         portal_url="https://gradadmission.tsinghua.edu.cn",
                         degree_level="Masters",
                         language_of_instruction="English",
@@ -28,6 +29,7 @@ def run() -> None:
                     ),
                     University(
                         name="Peking University",
+                        slug="peking-university",
                         portal_url="https://admission.pku.edu.cn",
                         degree_level="Masters",
                         language_of_instruction="Chinese",

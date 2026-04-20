@@ -1,29 +1,40 @@
+from __future__ import annotations
+
 import asyncio
 import json
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, WebSocket, WebSocketDisconnect
 from sqlalchemy.orm import Session
 
 from app.automation.playwright_agent import AutomationAgent
+from app.core.config import get_settings
 from app.db.database import get_db
-from app.models.models import ApplicationRecord, AuditLog, Document, Requirement, University
+from app.models.models import ApplicantProfile, ApplicationRecord, AuditLog, AutomationRun, Document, ManualAction, Requirement, RunEvent, RunScreenshot, University
 from app.schemas.schemas import (
+    ApplicantProfileRead,
     AutomationRequest,
     DocumentRead,
     FinalSubmissionApproval,
+    ManualActionResolveRequest,
     MatchPreview,
     RequirementParseRequest,
     RequirementRead,
+    RunRead,
     UniversityCreate,
     UniversityRead,
 )
 from app.services.audit import log_action
 from app.services.csv_importer import import_universities_csv
 from app.services.document_matcher import match_documents
+from app.services.document_router import build_document_plan
 from app.services.email_drafts import draft_follow_up_email
+from app.services.email_verification import poll_verification_email
+from app.services.excel_importer import import_applicants, parse_applicant_file
+from app.services.field_mapper import map_fields
+from app.services.recipe_loader import list_recipes, load_recipe, recipe_dir
 from app.services.requirement_parser import parse_requirement_text, parsed_to_json
-from app.core.config import get_settings
+from app.services.run_hub import run_hub
 
 router = APIRouter(prefix="/api", tags=["api"])
 settings = get_settings()
@@ -71,15 +82,8 @@ def parse_requirements(payload: RequirementParseRequest, db: Session = Depends(g
         extracted_language_requirement=parsed.language_requirement,
     )
     db.add(requirement)
-    if parsed.deadline:
-        uni.deadline = parsed.deadline
-    if parsed.application_fee is not None:
-        uni.application_fee = parsed.application_fee
-    if parsed.recommendation_letter_count is not None:
-        uni.recommendation_letter_count = parsed.recommendation_letter_count
     db.commit()
     db.refresh(requirement)
-    log_action(db, "requirement_parsed", f"university_id={uni.id}", university_id=uni.id)
     return requirement
 
 
@@ -99,14 +103,48 @@ async def upload_document(tag: str = Form(...), extra_tags: str = Form(""), file
     return doc
 
 
+@router.post("/applicants/import", response_model=list[ApplicantProfileRead])
+def import_applicants_from_excel(file_path: str = Form(...), db: Session = Depends(get_db)):
+    try:
+        rows = import_applicants(db, file_path)
+    except Exception as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+    return rows
+
+
+@router.post("/applicants/parse")
+def parse_applicants_only(file_path: str = Form(...)):
+    return {"rows": parse_applicant_file(file_path)}
+
+
+@router.get("/applicants", response_model=list[ApplicantProfileRead])
+def list_applicants(db: Session = Depends(get_db)):
+    return db.query(ApplicantProfile).order_by(ApplicantProfile.created_at.desc()).all()
+
+
+@router.get("/applicants/{applicant_id}")
+def get_applicant(applicant_id: int, db: Session = Depends(get_db)):
+    applicant = db.query(ApplicantProfile).filter(ApplicantProfile.id == applicant_id).first()
+    if not applicant:
+        raise HTTPException(status_code=404, detail="Applicant not found")
+    return {c.name: getattr(applicant, c.name) for c in applicant.__table__.columns}
+
+
+@router.put("/applicants/{applicant_id}")
+def update_applicant(applicant_id: int, payload: dict, db: Session = Depends(get_db)):
+    applicant = db.query(ApplicantProfile).filter(ApplicantProfile.id == applicant_id).first()
+    if not applicant:
+        raise HTTPException(status_code=404, detail="Applicant not found")
+    for key, value in payload.items():
+        if hasattr(applicant, key):
+            setattr(applicant, key, value)
+    db.commit()
+    return {"updated": True}
+
+
 @router.get("/universities/{university_id}/match-preview", response_model=list[MatchPreview])
 def preview_matches(university_id: int, db: Session = Depends(get_db)):
-    req = (
-        db.query(Requirement)
-        .filter(Requirement.university_id == university_id)
-        .order_by(Requirement.created_at.desc())
-        .first()
-    )
+    req = db.query(Requirement).filter(Requirement.university_id == university_id).order_by(Requirement.created_at.desc()).first()
     if not req:
         return []
     docs = db.query(Document).all()
@@ -114,10 +152,30 @@ def preview_matches(university_id: int, db: Session = Depends(get_db)):
     return match_documents(parsed.get("required_documents", []), docs)
 
 
+@router.get("/mapping/preview")
+def mapping_preview(university_id: int, applicant_profile_id: int, db: Session = Depends(get_db)):
+    uni = db.query(University).filter(University.id == university_id).first()
+    applicant = db.query(ApplicantProfile).filter(ApplicantProfile.id == applicant_profile_id).first()
+    if not uni or not applicant:
+        raise HTTPException(status_code=404, detail="University/applicant not found")
+    recipe = load_recipe(uni.slug)
+    mapped = map_fields(applicant, recipe)
+    doc_plan = build_document_plan(db, applicant, recipe)
+    return {"fields": mapped, "documents": doc_plan}
+
+
 @router.post("/automation/start")
 def start_automation(payload: AutomationRequest, db: Session = Depends(get_db)):
     agent = AutomationAgent(db)
-    result = asyncio.run(agent.run(payload.university_id, payload.application_id, payload.dry_run))
+    result = asyncio.run(
+        agent.run(
+            payload.university_id,
+            payload.applicant_profile_id,
+            payload.application_id,
+            payload.dry_run,
+            payload.headed,
+        )
+    )
     return result
 
 
@@ -127,6 +185,59 @@ def final_submit(payload: FinalSubmissionApproval, db: Session = Depends(get_db)
     return agent.approve_final_submission(payload.application_id, payload.approved)
 
 
+@router.post("/runs/{run_id}/pause")
+def pause_run(run_id: int, db: Session = Depends(get_db)):
+    return AutomationAgent(db).pause_run(run_id)
+
+
+@router.post("/runs/{run_id}/resume")
+def resume_run(run_id: int, db: Session = Depends(get_db)):
+    return AutomationAgent(db).resume_run(run_id)
+
+
+@router.post("/runs/{run_id}/cancel")
+def cancel_run(run_id: int, db: Session = Depends(get_db)):
+    return AutomationAgent(db).cancel_run(run_id)
+
+
+@router.get("/runs", response_model=list[RunRead])
+def list_runs(db: Session = Depends(get_db)):
+    return db.query(AutomationRun).order_by(AutomationRun.created_at.desc()).all()
+
+
+@router.get("/runs/{run_id}", response_model=RunRead)
+def get_run(run_id: int, db: Session = Depends(get_db)):
+    run = db.query(AutomationRun).filter(AutomationRun.id == run_id).first()
+    if not run:
+        raise HTTPException(status_code=404, detail="Run not found")
+    return run
+
+
+@router.get("/runs/{run_id}/events")
+def run_events(run_id: int, db: Session = Depends(get_db)):
+    return db.query(RunEvent).filter(RunEvent.run_id == run_id).order_by(RunEvent.created_at.desc()).all()
+
+
+@router.get("/runs/{run_id}/screenshots")
+def run_screenshots(run_id: int, db: Session = Depends(get_db)):
+    return db.query(RunScreenshot).filter(RunScreenshot.run_id == run_id).order_by(RunScreenshot.created_at.desc()).all()
+
+
+@router.get("/runs/{run_id}/manual-actions")
+def run_manual_actions(run_id: int, db: Session = Depends(get_db)):
+    return db.query(ManualAction).filter(ManualAction.run_id == run_id).order_by(ManualAction.created_at.desc()).all()
+
+
+@router.post("/manual-actions/resolve")
+def resolve_manual_action(payload: ManualActionResolveRequest, db: Session = Depends(get_db)):
+    return AutomationAgent(db).resolve_manual_action(payload.run_id, payload.action_type, payload.approved, payload.note)
+
+
+@router.get("/email-verification/poll")
+def email_poll(email_address: str, password_reference: str, imap_server: str = "imap.gmail.com"):
+    return poll_verification_email(email_address, password_reference, imap_server)
+
+
 @router.get("/applications")
 def list_applications(db: Session = Depends(get_db)):
     return db.query(ApplicationRecord).order_by(ApplicationRecord.updated_at.desc()).all()
@@ -134,12 +245,7 @@ def list_applications(db: Session = Depends(get_db)):
 
 @router.get("/applications/{application_id}/logs")
 def list_logs(application_id: int, db: Session = Depends(get_db)):
-    return (
-        db.query(AuditLog)
-        .filter(AuditLog.application_id == application_id)
-        .order_by(AuditLog.created_at.desc())
-        .all()
-    )
+    return db.query(AuditLog).filter(AuditLog.application_id == application_id).order_by(AuditLog.created_at.desc()).all()
 
 
 @router.get("/applications/{application_id}/follow-up-email")
@@ -150,3 +256,33 @@ def follow_up_email(application_id: int, db: Session = Depends(get_db)):
     uni = db.query(University).filter(University.id == app.university_id).first()
     body = draft_follow_up_email(uni.name if uni else "the university", app.pending_items)
     return {"subject": "Application Follow-up", "body": body}
+
+
+@router.get("/recipes")
+def recipes_list():
+    return {"recipes": list_recipes()}
+
+
+@router.get("/recipes/{slug}")
+def recipes_get(slug: str):
+    recipe_path = recipe_dir() / f"{slug}.json"
+    if not recipe_path.exists():
+        raise HTTPException(status_code=404, detail="recipe not found")
+    return json.loads(recipe_path.read_text(encoding="utf-8"))
+
+
+@router.post("/recipes/{slug}")
+def recipes_upsert(slug: str, payload: dict):
+    recipe_path = recipe_dir() / f"{slug}.json"
+    recipe_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    return {"saved": True, "path": str(recipe_path)}
+
+
+@router.websocket("/ws/runs/{run_id}")
+async def run_ws(run_id: int, websocket: WebSocket):
+    await run_hub.connect(run_id, websocket)
+    try:
+        while True:
+            await websocket.receive_text()
+    except WebSocketDisconnect:
+        run_hub.disconnect(run_id, websocket)

@@ -9,3 +9,9 @@ playwright==1.54.0
 tenacity==9.1.2
 python-dotenv==1.1.1
 email-validator==2.2.0
+pandas==2.3.2
+openpyxl==3.1.5
+keyring==25.6.0
+pywinauto==0.6.9
+pytest==8.4.1
+httpx==0.28.1
