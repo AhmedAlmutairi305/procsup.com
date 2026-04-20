@@ -17,11 +17,12 @@ class Settings(BaseSettings):
     dry_run: bool = True
     playwright_headless: bool = False
     automation_timeout_ms: int = 15000
+    imap_server_default: str = "imap.gmail.com"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
 
     def ensure_dirs(self) -> None:
-        for path in [self.data_dir, self.upload_dir, self.screenshot_dir, f"{self.data_dir}/logs"]:
+        for path in [self.data_dir, self.upload_dir, self.screenshot_dir, f"{self.data_dir}/logs", f"{self.data_dir}/recipes"]:
             Path(path).mkdir(parents=True, exist_ok=True)
 
 

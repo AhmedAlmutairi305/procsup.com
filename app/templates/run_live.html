@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+<section>
+  <h2>Live Run #{{ run.id }}</h2>
+  <p>Status: <strong id="status">{{ run.status.value }}</strong> | Step: <span id="step">{{ run.current_step or '-' }}</span> | Progress: <span id="progress">{{ run.progress_percent }}</span>%</p>
+  <p>Last successful action: <span id="last_success">{{ run.last_successful_action or '-' }}</span></p>
+  <p>Warning/Error: <span id="warning">{{ run.current_warning_error or '-' }}</span></p>
+  <img id="shot" src="" alt="latest screenshot" style="max-width: 100%; border:1px solid #ddd;"/>
+  <pre id="events" style="max-height:320px;overflow:auto;background:#111;color:#8f8;padding:8px;"></pre>
+</section>
+
+<section class="grid three">
+  <form method="post" action="/ui/runs/{{run.id}}/pause"><button type="submit">Pause</button></form>
+  <form method="post" action="/ui/runs/{{run.id}}/resume"><button type="submit">Resume</button></form>
+  <form method="post" action="/ui/runs/{{run.id}}/cancel"><button type="submit">Cancel</button></form>
+</section>
+
+<section>
+  <h3>Manual action queue</h3>
+  {% for a in actions %}
+  <div style="border:1px solid #ccc;padding:10px;margin:8px 0;">
+    <div>{{a.action_type.value}} | approved={{a.approved}}</div>
+    {% if a.approved is none %}
+    <form method="post" action="/ui/runs/{{run.id}}/approve" class="stack">
+      <input type="hidden" name="action_type" value="{{a.action_type.value}}" />
+      <label>Approve <select name="approve"><option value="true">true</option><option value="false">false</option></select></label>
+      <label>Note <input name="note"/></label>
+      <button type="submit">Resolve</button>
+    </form>
+    {% endif %}
+  </div>
+  {% endfor %}
+</section>
+
+<script>
+const ws = new WebSocket(`ws://${location.host}/api/ws/runs/{{ run.id }}`);
+const eventsEl = document.getElementById('events');
+const shot = document.getElementById('shot');
+ws.onopen = () => ws.send('subscribe');
+ws.onmessage = (evt) => {
+  const data = JSON.parse(evt.data);
+  document.getElementById('status').textContent = data.status || '-';
+  document.getElementById('step').textContent = data.current_step || '-';
+  document.getElementById('progress').textContent = data.progress_percent ?? 0;
+  document.getElementById('last_success').textContent = data.last_successful_action || '-';
+  document.getElementById('warning').textContent = data.current_warning_error || '-';
+  if (data.screenshot_path) {
+    const rel = data.screenshot_path.replace('data/screenshots/', '/screenshots/').replace('./data/screenshots/', '/screenshots/');
+    shot.src = rel + '?ts=' + Date.now();
+  }
+  eventsEl.textContent = JSON.stringify(data) + '\n' + eventsEl.textContent;
+};
+</script>
+{% endblock %}

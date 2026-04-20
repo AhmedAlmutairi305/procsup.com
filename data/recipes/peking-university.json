@@ -1,0 +1,18 @@
+{
+  "slug": "peking-university",
+  "portal_urls": ["https://admission.pku.edu.cn"],
+  "field_mappings": {
+    "full_name": {"selector": "input[name='full_name']", "type": "text"},
+    "email": {"selector": "input[name='email']", "type": "text"},
+    "passport_number": {"selector": "input[name='passport']", "type": "text"},
+    "intended_major": {"selector": "input[name='major']", "type": "text"}
+  },
+  "upload_mappings": {
+    "passport_file": {"selector": "input[name='passport_file']"},
+    "transcript_file": {"selector": "input[name='transcript_file']"},
+    "cv_file": {"selector": "input[name='cv_file']"}
+  },
+  "selector_overrides": {
+    "next_step": "button:has-text('Next')"
+  }
+}

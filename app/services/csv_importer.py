@@ -6,6 +6,10 @@ from sqlalchemy.orm import Session
 from app.models.models import University
 
 
+def _slugify(name: str) -> str:
+    return "-".join(name.lower().strip().split())
+
+
 def import_universities_csv(db: Session, csv_path: str) -> int:
     path = Path(csv_path)
     if not path.exists():
@@ -17,6 +21,7 @@ def import_universities_csv(db: Session, csv_path: str) -> int:
         for row in reader:
             uni = University(
                 name=row["name"],
+                slug=row.get("slug") or _slugify(row["name"]),
                 portal_url=row["portal_url"],
                 deadline=row.get("deadline"),
                 degree_level=row.get("degree_level"),

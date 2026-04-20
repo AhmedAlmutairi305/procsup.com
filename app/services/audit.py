@@ -15,6 +15,7 @@ def log_action(
     application_id: int | None = None,
     university_id: int | None = None,
     screenshot_path: str | None = None,
+    run_id: int | None = None,
 ) -> None:
     log = AuditLog(
         action=action,
@@ -23,6 +24,7 @@ def log_action(
         application_id=application_id,
         university_id=university_id,
         screenshot_path=screenshot_path,
+        run_id=run_id,
     )
     db.add(log)
     db.commit()

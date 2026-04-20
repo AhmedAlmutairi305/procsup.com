@@ -1,181 +1,179 @@
-# China University Application Agent (Semi-Automatic, Local)
+# China University Application Agent (Upgraded Local MVP)
 
-Production-style local MVP for preparing, tracking, and semi-automating Chinese university applications with **explicit human approval gates** before irreversible submission.
+A Windows-friendly, browser-first **FastAPI + Playwright + SQLite** local agent that helps users semi-automate Chinese university applications with mandatory human approval at critical steps.
 
 ## Architecture Summary
 
-### Core stack
-- **Backend API:** FastAPI
-- **Automation:** Playwright
-- **Database:** SQLite + SQLAlchemy
-- **Validation/Contracts:** Pydantic
-- **Dashboard:** Server-rendered Jinja2 + minimal CSS
-- **Config:** `.env` via `pydantic-settings`
-- **Logging/Audit:** Rotating app log + database audit events
+- **Backend:** FastAPI (REST + WebSocket stream for live runs)
+- **Automation:** Playwright (headed by default) + Windows desktop fallback abstraction (`pywinauto`)
+- **DB:** SQLite + SQLAlchemy models for applicants, runs/sessions, events, screenshots, manual approvals, audit
+- **Dashboard:** Jinja templates (`/`, `/runs/{id}`) for live run monitor and controls
+- **Applicant input:** Excel/CSV import via `pandas` + `openpyxl`
+- **Mapping layer:** canonical applicant profile → recipe-driven portal selectors with normalization/transforms
+- **Documents:** deterministic routing (explicit path priority, tag fallback, pre-run warnings)
+- **Email verification:** IMAP polling service with code/link extraction + manual override gates
+- **Credential security:** keyring-first secret provider with env fallback; no hardcoded plaintext passwords
 
-### Safety model
-1. Automation defaults to **dry-run**.
-2. Agent fills and uploads in preview/preparation mode.
-3. Agent always pauses at **human review gate** before final submit.
-4. Final submission can only be marked complete through explicit manual approval endpoint/UI action.
-5. CAPTCHA detection pauses and requests manual intervention.
+## Upgrade Summary
 
-### Key modules
-- `app/services/requirement_parser.py`: Requirement extraction from raw text.
-- `app/services/document_matcher.py`: File-tag and name based robust matching with confidence + mismatch warnings.
-- `app/automation/playwright_agent.py`: Browser workflow with retries, selector fallbacks, screenshots, pause gates.
-- `app/api/routes.py`: CRUD + parsing + automation + tracking endpoints.
-- `app/templates/*`: Dashboard and university profile UI.
+Implemented major upgrades while preserving existing endpoints and behavior:
 
-## Project Tree
+1. Added applicant profile model/import pipeline for `.xlsx` and `.csv`.
+2. Added automation session/run model with statuses:
+   - queued, preparing, running, waiting_manual_action, waiting_email_verification, paused, completed, failed, cancelled.
+3. Added real-time run events + screenshots + WebSocket stream (`/api/ws/runs/{run_id}`).
+4. Added live monitor page with pause/resume/cancel and manual action approvals.
+5. Added mapping layer + normalization utilities + recipe override support.
+6. Added document routing plan with local path validation and fallback tag matching.
+7. Upgraded Playwright agent to session-driven workflow with explicit manual gates.
+8. Added Windows desktop fallback abstraction using `pywinauto` for native file picker scenarios.
+9. Added IMAP email verification polling service.
+10. Added recipe management endpoints and sample recipes (2 university examples + generic fallback).
+11. Added baseline pytest suite (normalization/parser/mapper/document routing/session API smoke).
+
+## File Tree
 
 ```text
 .
-├── app
+├── app/
 │   ├── api/routes.py
-│   ├── automation/playwright_agent.py
-│   ├── core/{config.py,logging.py}
+│   ├── automation/
+│   │   ├── desktop_fallback.py
+│   │   └── playwright_agent.py
+│   ├── core/config.py
 │   ├── db/{database.py,init_db.py}
 │   ├── models/models.py
 │   ├── schemas/schemas.py
-│   ├── services/{audit.py,credentials.py,csv_importer.py,document_matcher.py,email_drafts.py,requirement_parser.py}
-│   ├── static/dashboard.css
-│   ├── templates/{base.html,dashboard.html,university.html}
+│   ├── services/
+│   │   ├── audit.py
+│   │   ├── credentials.py
+│   │   ├── document_router.py
+│   │   ├── email_verification.py
+│   │   ├── excel_importer.py
+│   │   ├── field_mapper.py
+│   │   ├── normalization.py
+│   │   ├── recipe_loader.py
+│   │   ├── run_hub.py
+│   │   └── secrets.py
+│   ├── templates/{dashboard.html,run_live.html,university.html,base.html}
 │   └── main.py
-├── data/{logs,screenshots,seed,uploads}
-├── examples
-│   ├── universities_sample.csv
-│   └── document_library/{README.md,*.pdf}
-├── scripts/seed_data.py
-├── .env.example
+├── examples/
+│   ├── applicant_template.csv
+│   └── recipes/{generic.json,tsinghua-university.json,zhejiang-university.json}
+├── tests/
+│   ├── test_api_smoke.py
+│   ├── test_document_router.py
+│   ├── test_excel_importer.py
+│   ├── test_field_mapper.py
+│   └── test_normalization.py
 ├── requirements.txt
+├── .env.example
 └── README.md
 ```
 
-## Features Implemented
+## Windows Setup (PowerShell and CMD)
 
-### 1) University Management
-- Add universities via API.
-- Import from CSV.
-- Track portal URL, deadline, degree level, language, scholarship, fee, recommendation count, status.
+### 1) Create virtual environment
 
-### 2) Requirement Parsing
-- Accept raw text from portal/announcement pages.
-- Extract and structure:
-  - required documents,
-  - deadline,
-  - language requirement,
-  - application fee,
-  - recommendation letter count,
-  - boolean flags for study plan/CV/passport/transcript/medical form.
-
-### 3) Document Manager
-- Upload files into central library.
-- Tag each file by document type.
-- Match required documents to files with confidence score.
-- Surface missing items and naming mismatch warnings.
-- Preview upload mapping.
-
-### 4) Browser Automation (Playwright)
-- Opens portal and navigates with retry logic.
-- Selector fallback strategy for filling and uploads.
-- Captures screenshots at key steps.
-- Logs selector failures/page-change issues.
-- Detects CAPTCHA and pauses.
-- Pauses before final submission and requires explicit approval event.
-
-### 5) Dashboard
-- University and application overview.
-- University detail with requirement parser form.
-- Trigger automation by university ID.
-- Approve/reject final submission manually.
-- Inspect audit logs and screenshots.
-
-### 6) Tracking & Audit Trail
-- Every major action persisted in `audit_logs` with timestamp.
-- Store statuses, pending items, submitted vs prepared-only state.
-- Follow-up email draft generation endpoint.
-
-### 7) AI Hook Ready
-- LLM-specific logic isolated behind service boundaries (`services/*`).
-- Current system works fully without LLMs.
-
-## Setup
-
-1. **Create environment and install dependencies**
-```bash
+PowerShell:
+```powershell
 python -m venv .venv
-source .venv/bin/activate
+.\.venv\Scripts\Activate.ps1
+```
+
+CMD:
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
+```
+
+### 2) Install dependencies
+
+```powershell
 pip install -r requirements.txt
 ```
 
-2. **Install Playwright browsers**
-```bash
+### 3) Install Playwright browser
+
+```powershell
 playwright install chromium
 ```
 
-3. **Configure environment**
-```bash
-cp .env.example .env
-# then edit .env as needed
+### 4) Configure env
+
+PowerShell:
+```powershell
+Copy-Item .env.example .env
 ```
 
-4. **Initialize and seed local data**
-```bash
+CMD:
+```cmd
+copy .env.example .env
+```
+
+### 5) (Optional) Seed universities
+
+```powershell
 python scripts/seed_data.py
 ```
 
-5. **Run app**
-```bash
+### 6) Run server
+
+```powershell
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-6. **Open dashboard and docs**
-- Dashboard: `http://127.0.0.1:8000/`
-- API docs: `http://127.0.0.1:8000/docs`
+## Run Steps (End-to-End)
 
-## Usage Workflow
+1. Open dashboard: `http://127.0.0.1:8000/`.
+2. Import applicant Excel/CSV (absolute Windows path, e.g. `C:\\Users\\...\\applicants.xlsx`).
+3. Ensure university has a slug that maps to recipe files (or generic fallback recipe is used).
+4. Start run with university + applicant + dry_run/headed.
+5. Monitor live updates on `/runs/{run_id}`.
+6. Resolve manual actions (login submit, email verification continue, final submit) on the run page.
+7. Pause/resume/cancel as needed.
+8. Inspect logs/events/screenshots through API endpoints.
 
-1. Import universities from CSV (`examples/universities_sample.csv`) or add manually via API.
-2. Upload documents to library (`/api/documents/upload`).
-3. Paste requirement text in university profile page; parser stores structured requirement.
-4. Start automation from dashboard (dry-run recommended first).
-5. Review logs/screenshots and document match preview.
-6. If ready, manually approve final submit in dashboard/API.
-7. Track post-submission status and generate follow-up emails.
+## API Highlights (Expanded)
 
-## API Highlights
+- Applicant profiles:
+  - `POST /api/applicants/import`
+  - `POST /api/applicants/parse`
+  - `GET /api/applicants`
+  - `GET /api/applicants/{id}`
+  - `PUT /api/applicants/{id}`
+- Mapping/document preview:
+  - `GET /api/mapping/preview?university_id=...&applicant_profile_id=...`
+- Run sessions:
+  - `POST /api/automation/start`
+  - `GET /api/runs`
+  - `GET /api/runs/{id}`
+  - `GET /api/runs/{id}/events`
+  - `GET /api/runs/{id}/screenshots`
+  - `POST /api/runs/{id}/pause|resume|cancel`
+  - `POST /api/manual-actions/resolve`
+  - `WS /api/ws/runs/{run_id}`
+- Email verification:
+  - `GET /api/email-verification/poll`
+- Recipes:
+  - `GET /api/recipes`
+  - `GET /api/recipes/{slug}`
+  - `POST /api/recipes/{slug}`
 
-- `GET /api/universities`
-- `POST /api/universities`
-- `POST /api/universities/import-csv`
-- `POST /api/requirements/parse`
-- `POST /api/documents/upload`
-- `GET /api/universities/{id}/match-preview`
-- `POST /api/automation/start`
-- `POST /api/automation/final-submit`
-- `GET /api/applications/{id}/logs`
-- `GET /api/applications/{id}/follow-up-email`
+## Credentials / Security
 
-## Secure Credential Pattern
-
-- No plaintext passwords in code or DB.
-- `CredentialProvider` reads credentials from environment variables per university slug.
-- Can be replaced later with OS keyring or vault integration.
-
-## Future Improvements
-
-- Richer form recipe engine per university with maintained selector maps.
-- Native keyring integration for credentials.
-- OCR support for scanned documents.
-- Real multilingual translation/summarization via pluggable LLM provider.
-- Background job queue (Celery/RQ) for long automation runs.
-- WebSocket live run monitor.
-- Role-based local auth for multi-user operation.
+- Recommended: store portal/email secrets in OS keyring.
+- Fallback env variables supported:
+  - `PORTAL_USER_<UNIVERSITY_SLUG>`
+  - `PORTAL_PASS_<UNIVERSITY_SLUG>`
+  - `EMAIL_<EMAIL_PASSWORD_REFERENCE>`
+- Never commit real credentials.
 
 ## Known Limitations
 
-- Generic automation uses fallback selectors and may require per-portal tuning.
-- CAPTCHA solving is manual by design.
-- Final real submit click is represented as explicit approval event to enforce safety.
-- SQLite is default for local single-user MVP; migrate to PostgreSQL for multi-user concurrency.
+1. Live screenshot streaming is event-driven checkpoint screenshots (not full video stream).
+2. Desktop fallback requires Windows + `pywinauto` and a detectable native dialog title.
+3. IMAP parsing is generic heuristic (subject/body/code/link extraction); some providers may need custom rules.
+4. Recipe quality determines real-world success for each university portal.
+5. In this repository environment, `.xlsx` sample generation may require local dependency install (CSV template is included).
+
