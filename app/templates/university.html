@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="grid two">
+  <article>
+    <h2>{{ uni.name }}</h2>
+    <p><strong>Portal:</strong> <a href="{{uni.portal_url}}" target="_blank">{{uni.portal_url}}</a></p>
+    <p><strong>Deadline:</strong> {{ uni.deadline or '-' }}</p>
+    <p><strong>Degree:</strong> {{ uni.degree_level or '-' }}</p>
+    <p><strong>Language:</strong> {{ uni.language_of_instruction or '-' }}</p>
+    <p><strong>Status:</strong> {{ uni.status.value }}</p>
+
+    <h3>Parse Requirement Text</h3>
+    <form method="post" action="/ui/requirements/parse" class="stack">
+      <input type="hidden" name="university_id" value="{{uni.id}}" />
+      <textarea name="source_text" rows="8" placeholder="Paste requirement text" required></textarea>
+      <button type="submit">Parse & Save</button>
+    </form>
+  </article>
+
+  <article>
+    <h3>Latest Parsed Requirement</h3>
+    {% if requirement %}
+      <pre>{{ requirement.structured_json }}</pre>
+    {% else %}
+      <p>No requirement parsed yet.</p>
+    {% endif %}
+  </article>
+</section>
+
+<section>
+  <h3>Audit Logs</h3>
+  <table>
+    <thead><tr><th>Time</th><th>Action</th><th>Detail</th><th>Screenshot</th></tr></thead>
+    <tbody>
+    {% for log in logs %}
+      <tr>
+        <td>{{ log.created_at }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.detail or '-' }}</td>
+        <td>{% if log.screenshot_path %}<a href="/screenshots/{{ log.screenshot_path.split('/')[-1] }}" target="_blank">View</a>{% else %}-{% endif %}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</section>
+{% endblock %}
