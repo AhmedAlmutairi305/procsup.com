@@ -1,0 +1,2 @@
+default: claude-haiku-4-5
+escalate_when: []

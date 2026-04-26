@@ -1,0 +1,5 @@
+workspaces:
+  demo:
+    chunk_size: 512
+    chunk_overlap: 64
+    default_model: claude-haiku-4-5
