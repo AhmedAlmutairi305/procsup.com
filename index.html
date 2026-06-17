@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ============================================================
+       Document setup
+       ============================================================ -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Page title (EDIT BRAND NAME HERE) -->
+  <title>Product Sourcing &amp; Procurement Coordination | PROCSUP</title>
+
+  <!-- ============================================================
+       SEO meta tags
+       ============================================================ -->
+  <meta name="description" content="Product sourcing and procurement coordination for commercial buyers, importers, distributors, and project-based purchasing. We identify suitable suppliers, request quotations, compare offers, and follow up on documentation and delivery terms." />
+  <meta name="keywords" content="product sourcing, procurement coordination, RFQ sourcing, supplier sourcing, quotation collection, EXW FOB quotation, sourcing support, supplier coordination" />
+  <meta name="author" content="PROCSUP" />
+  <meta name="robots" content="index, follow" />
+  <!-- Update this to your live GitHub Pages URL -->
+  <link rel="canonical" href="https://your-username.github.io/medsourcing/" />
+
+  <!-- ============================================================
+       Open Graph / social meta tags
+       (og-image.png is a placeholder — add your own 1200x630 image)
+       ============================================================ -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="PROCSUP" />
+  <meta property="og:title" content="Product Sourcing &amp; Procurement Coordination" />
+  <meta property="og:description" content="We help commercial buyers and project-based clients source products, request quotations, compare suppliers, and coordinate procurement communication." />
+  <meta property="og:url" content="https://your-username.github.io/medsourcing/" />
+  <meta property="og:image" content="https://your-username.github.io/medsourcing/og-image.png" />
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Product Sourcing &amp; Procurement Coordination" />
+  <meta name="twitter:description" content="Product sourcing and procurement coordination for commercial buyers, importers, and distributors." />
+  <meta name="twitter:image" content="https://your-username.github.io/medsourcing/og-image.png" />
+
+  <!-- Browser theme color -->
+  <meta name="theme-color" content="#0c2340" />
+
+  <!-- ============================================================
+       Favicon (inline SVG placeholder — replace with your own)
+       A navy rounded square with a light-blue medical cross.
+       ============================================================ -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230c2340'/%3E%3Cpath d='M14 7h4v7h7v4h-7v7h-4v-7H7v-4h7z' fill='%235aa0e0'/%3E%3C/svg%3E" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Behavior (deferred so it runs after the DOM is parsed) -->
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+  <!-- ============================================================
+       Skip link (accessibility)
+       ============================================================ -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============================================================
+       Header / Navigation
+       ============================================================ -->
+  <header class="site-header" id="top">
+    <div class="container header__inner">
+
+      <!-- Brand -->
+      <a class="brand" href="#top" aria-label="PROCSUP home">
+        <div class="procsup-logo">
+          <div class="procsup-logo-main">PROC<span>SUP</span></div>
+          <div class="procsup-logo-sub">
+            <span class="procsup-logo-line"></span>
+            <span>Product Sourcing &amp; Procurement</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu"
+        aria-expanded="false" aria-controls="primaryNav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+
+      <!-- Primary navigation -->
+      <nav class="nav" id="primaryNav" aria-label="Primary">
+        <ul class="nav__list">
+          <li><a class="nav__link" href="#about">About</a></li>
+          <li><a class="nav__link" href="#services">Services</a></li>
+          <li><a class="nav__link" href="#categories">Categories</a></li>
+          <li><a class="nav__link" href="#process">How We Work</a></li>
+          <li><a class="nav__link" href="#suppliers">Suppliers</a></li>
+          <li><a class="nav__link nav__cta" href="#contact">Request Support</a></li>
+        </ul>
+      </nav>
+
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================================================
+         1. Hero
+         ============================================================ -->
+    <section class="hero section--navy" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+
+        <div class="hero__copy">
+          <p class="eyebrow eyebrow--light">Product Sourcing &amp; Procurement Coordination</p>
+          <h1 class="hero__title" id="hero-title">
+            Product Sourcing &amp; Procurement Coordination
+          </h1>
+          <p class="hero__sub">
+            We help commercial buyers and project-based clients source products,
+            request quotations, compare suppliers, and coordinate procurement communication.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#contact">Request Sourcing Support</a>
+            <a class="btn btn--ghost" href="#services">View Services</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2. About
+         ============================================================ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container about__grid">
+        <div class="about__intro">
+          <p class="eyebrow">About the service</p>
+          <h2 class="section__title" id="about-title">
+            A coordinated, documentation-focused approach to commercial purchasing
+          </h2>
+        </div>
+        <div class="about__text">
+          <p>
+            We support purchasing requirements by coordinating directly with manufacturers
+            and suppliers — requesting quotations, gathering product details and certificates,
+            and confirming delivery terms on your behalf. Our work sits between a buyer's
+            requirement and a clear, comparable set of supplier offers.
+          </p>
+          <p>
+            For each requirement we prepare a structured request, identify suitable
+            manufacturers, collect EXW / FOB quotations, and follow up on the documents and
+            specifications that procurement teams need to make a decision. Communication stays
+            organized and traceable from the first enquiry through to supplier selection.
+          </p>
+          <p>
+            We work with commercial buyers, importers, distributors, and project-based
+            procurement teams who need a reliable point of coordination for product sourcing
+            across multiple suppliers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3. Services
+         ============================================================ -->
+    <section class="section section--gray" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Services</p>
+          <h2 class="section__title" id="services-title">What we coordinate</h2>
+          <p class="section__lead">
+            End-to-end procurement coordination — from preparing the request to comparing
+            offers and following up on documentation.
+          </p>
+        </header>
+
+        <div class="grid grid--cards">
+
+          <article class="card">
+            <span class="card__icon" aria-hidden="true">🔎</span>
+            <h3 class="card__title">Supplier Sourcing</h3>
+            <p class="card__text">We identify suitable manufacturers and suppliers that match your product requirement, market, and quality expectations.</p>
+          </article>
+
+          <article class="card">
+            <span class="card__icon" aria-hidden="true">💬</span>
+            <h3 class="card__title">Supplier Communication</h3>
+            <p class="card__text">We manage day-to-day correspondence with suppliers, clarify questions, and keep every thread organized.</p>
+          </article>
+
+          <article class="card">
+            <span class="card__icon" aria-hidden="true">📄</span>
+            <h3 class="card__title">Product Documentation Follow-up</h3>
+            <p class="card__text">We request and track datasheets, certificates, and technical documents until the file is complete.</p>
+          </article>
+
+          <article class="card">
+            <span class="card__icon" aria-hidden="true">📊</span>
+            <h3 class="card__title">Offer Comparison</h3>
+            <p class="card__text">We compile a side-by-side comparison of price, terms, lead time, and specifications to support your decision.</p>
+          </article>
+
+          <article class="card">
+            <span class="card__icon" aria-hidden="true">📦</span>
+            <h3 class="card__title">Procurement Project Support</h3>
+            <p class="card__text">We coordinate larger, multi-item purchasing projects and keep timelines and documentation on track.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4. Product Categories
+         ============================================================ -->
+    <section class="section" id="categories" aria-labelledby="categories-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Product categories</p>
+          <h2 class="section__title" id="categories-title">Areas we source</h2>
+          <p class="section__lead">
+            We coordinate sourcing across a broad range of product categories. If your
+            requirement sits outside this list, send the details and we will review it.
+          </p>
+        </header>
+
+        <ul class="grid grid--categories" role="list">
+          <li class="category"><span class="category__icon" aria-hidden="true">🏭</span><span>Industrial Supplies</span></li>
+          <li class="category"><span class="category__icon" aria-hidden="true">🛒</span><span>Consumer Products</span></li>
+          <li class="category"><span class="category__icon" aria-hidden="true">🏥</span><span>Healthcare &amp; Medical Supplies</span></li>
+          <li class="category"><span class="category__icon" aria-hidden="true">📦</span><span>Packaging Materials</span></li>
+          <li class="category"><span class="category__icon" aria-hidden="true">🦺</span><span>Safety Products</span></li>
+          <li class="category"><span class="category__icon" aria-hidden="true">⚡</span><span>Electronics &amp; Components</span></li>
+          <li class="category"><span class="category__icon" aria-hidden="true">⚙️</span><span>Custom Manufacturing</span></li>
+          <li class="category"><span class="category__icon" aria-hidden="true">🔄</span><span>General Trading Products</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5. How We Work (a real sequence — numbered)
+         ============================================================ -->
+    <section class="section section--navy" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <header class="section__head section__head--light">
+          <p class="eyebrow eyebrow--light">How we work</p>
+          <h2 class="section__title" id="process-title">From requirement to supplier selection</h2>
+          <p class="section__lead section__lead--light">
+            A clear, repeatable process that keeps every requirement organized and traceable.
+          </p>
+        </header>
+
+        <ol class="steps" role="list">
+          <li class="step">
+            <span class="step__num">01</span>
+            <div class="step__body">
+              <h3 class="step__title">Receive the requirement</h3>
+              <p>We receive product requirements from buyers or procurement projects, including specifications, quantities, and target terms.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__num">02</span>
+            <div class="step__body">
+              <h3 class="step__title">Identify suppliers</h3>
+              <p>We identify suitable manufacturers and suppliers that fit the product, market, and quality requirements.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__num">03</span>
+            <div class="step__body">
+              <h3 class="step__title">Request quotations &amp; documents</h3>
+              <p>We request EXW / FOB quotations along with product documents, datasheets, and certificates.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__num">04</span>
+            <div class="step__body">
+              <h3 class="step__title">Compare offers</h3>
+              <p>We compare supplier offers and technical details on a consistent basis — price, terms, lead time, and specifications.</p>
+            </div>
+          </li>
+          <li class="step">
+            <span class="step__num">05</span>
+            <div class="step__body">
+              <h3 class="step__title">Coordinate to selection</h3>
+              <p>We coordinate communication until the buyer selects the preferred supplier and the file is ready to proceed.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6. Supplier Collaboration (supplier-friendly)
+         ============================================================ -->
+    <section class="section section--gray" id="suppliers" aria-labelledby="suppliers-title">
+      <div class="container suppliers__grid">
+
+        <div class="suppliers__intro">
+          <p class="eyebrow">For suppliers &amp; manufacturers</p>
+          <h2 class="section__title" id="suppliers-title">Working with us as a supplier</h2>
+          <p>
+            We contact manufacturers and suppliers with structured, complete RFQ lists so you
+            can respond quickly and accurately. Each enquiry sets out exactly what we need,
+            on agreed terms, which keeps the quotation process efficient for both sides.
+          </p>
+          <p>
+            We value clear, professional communication and respect your pricing, terms, and
+            confidentiality. If your products match an active requirement, we welcome your
+            quotation and ongoing collaboration on future projects.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7. Why Work With Us
+         ============================================================ -->
+    <section class="section" id="why" aria-labelledby="why-title">
+      <div class="container">
+        <header class="section__head">
+          <p class="eyebrow">Why work with us</p>
+          <h2 class="section__title" id="why-title">Coordination you can rely on</h2>
+        </header>
+
+        <div class="grid grid--why">
+          <div class="feature">
+            <span class="feature__icon" aria-hidden="true">✓</span>
+            <div>
+              <h3 class="feature__title">Clear RFQ communication</h3>
+              <p>Requirements are stated precisely, so suppliers respond with complete, comparable offers.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature__icon" aria-hidden="true">✓</span>
+            <div>
+              <h3 class="feature__title">Organized product lists</h3>
+              <p>Multi-item requirements are structured and tracked so nothing is missed.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature__icon" aria-hidden="true">✓</span>
+            <div>
+              <h3 class="feature__title">International supplier coordination</h3>
+              <p>We coordinate across suppliers and time zones to keep enquiries moving.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature__icon" aria-hidden="true">✓</span>
+            <div>
+              <h3 class="feature__title">Multi-category sourcing focus</h3>
+              <p>We coordinate sourcing across multiple product categories and their documentation requirements.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature__icon" aria-hidden="true">✓</span>
+            <div>
+              <h3 class="feature__title">Professional follow-up</h3>
+              <p>We stay on top of open items until quotations and documents are complete.</p>
+            </div>
+          </div>
+          <div class="feature">
+            <span class="feature__icon" aria-hidden="true">✓</span>
+            <div>
+              <h3 class="feature__title">Documentation-focused process</h3>
+              <p>Certificates, datasheets, and terms are gathered and kept in order throughout.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8. Contact
+         ============================================================ -->
+    <section class="section section--gray" id="contact" aria-labelledby="contact-title">
+      <div class="container contact__grid">
+
+        <!-- Direct contact details -->
+        <div class="contact__info">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section__title" id="contact-title">Request sourcing support</h2>
+          <p class="contact__lead">
+            Send your product requirement and we will prepare an RFQ, identify suitable
+            suppliers, and return a clear set of comparable offers.
+          </p>
+
+          <ul class="contact-list" role="list">
+            <li class="contact-item">
+              <span class="contact-item__label">Contact</span>
+              <span class="contact-item__value">Product Coordinator</span>
+            </li>
+            <li class="contact-item">
+              <span class="contact-item__label">Email</span>
+              <a class="contact-item__value" id="emailText"
+                 href="mailto:info@procsup.com">info@procsup.com</a>
+            </li>
+            <li class="contact-item">
+              <span class="contact-item__label">WhatsApp</span>
+              <!-- EDIT WHATSAPP: also update CONFIG in script.js -->
+              <a class="contact-item__value" id="whatsappText"
+                 href="https://wa.me/966558510594" target="_blank" rel="noopener">+966 55 851 0594</a>
+            </li>
+          </ul>
+
+          <div class="contact__actions">
+            <a class="btn btn--primary" id="emailBtn" href="mailto:info@procsup.com">Email us</a>
+            <a class="btn btn--outline" id="whatsappBtn" href="https://wa.me/966558510594"
+               target="_blank" rel="noopener">Message on WhatsApp</a>
+          </div>
+        </div>
+
+        <!-- Contact form (no backend — opens the user's email client) -->
+        <div class="contact__form-wrap">
+          <form class="contact-form" id="contactForm" novalidate>
+            <p class="form__note">
+              This form opens your email app with the details pre-filled — no account needed.
+            </p>
+
+            <div class="field">
+              <label for="cf-name">Your name</label>
+              <input type="text" id="cf-name" name="name" autocomplete="name" required />
+            </div>
+
+            <div class="field">
+              <label for="cf-email">Your email</label>
+              <input type="email" id="cf-email" name="email" autocomplete="email" required />
+            </div>
+
+            <div class="field">
+              <label for="cf-company">Company <span class="optional">(optional)</span></label>
+              <input type="text" id="cf-company" name="company" autocomplete="organization" />
+            </div>
+
+            <div class="field">
+              <label for="cf-type">Requirement type</label>
+              <select id="cf-type" name="type">
+                <option value="Sourcing request">Sourcing request</option>
+                <option value="RFQ / quotation">RFQ / quotation</option>
+                <option value="Procurement project">Procurement project</option>
+                <option value="Supplier collaboration">Supplier collaboration</option>
+                <option value="General enquiry">General enquiry</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="cf-message">Product requirement / message</label>
+              <textarea id="cf-message" name="message" rows="5"
+                placeholder="Product, quantity / MOQ, target Incoterms (EXW / FOB), required certificates, destination…" required></textarea>
+            </div>
+
+            <!-- Live status message for validation / confirmation -->
+            <p class="form__status" id="formStatus" role="status" aria-live="polite"></p>
+
+            <button type="submit" class="btn btn--primary btn--block">Open email to send</button>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       Footer
+       ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer__grid">
+
+      <div class="footer__brand">
+        <a class="brand brand--footer" href="#top" aria-label="PROCSUP home">
+          <div class="procsup-logo">
+            <div class="procsup-logo-main">PROC<span>SUP</span></div>
+            <div class="procsup-logo-sub">
+              <span class="procsup-logo-line"></span>
+              <span>Product Sourcing &amp; Procurement</span>
+            </div>
+          </div>
+        </a>
+        <p class="footer__about">
+          Product sourcing and procurement coordination for commercial buyers,
+          importers, distributors, and project-based purchasing requirements.
+        </p>
+      </div>
+
+      <nav class="footer__col" aria-label="Sections">
+        <h4 class="footer__heading">Explore</h4>
+        <ul role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#process">How We Work</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__col" aria-label="For suppliers">
+        <h4 class="footer__heading">Suppliers</h4>
+        <ul role="list">
+          <li><a href="#suppliers">Collaboration</a></li>
+          <li><a href="#why">Why Work With Us</a></li>
+          <li><a href="#contact">Submit a Quotation</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer__col">
+        <h4 class="footer__heading">Contact</h4>
+        <ul role="list" class="footer__contact">
+          <li>Product Coordinator</li>
+          <li><a id="footerEmail" href="mailto:info@procsup.com">info@procsup.com</a></li>
+          <li><a id="footerWhatsapp" href="https://wa.me/966558510594" target="_blank" rel="noopener">+966 55 851 0594</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer__bar">
+      <div class="container footer__bar-inner">
+        <p>&copy; <span id="year">2025</span> PROCSUP. All rights reserved.</p>
+        <p class="footer__tagline">
+          Product sourcing and procurement coordination services for commercial purchasing requirements.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
